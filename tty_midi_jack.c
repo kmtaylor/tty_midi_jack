@@ -233,9 +233,10 @@ static int jack_close(void) {
 
 void exit_cli(int sig)
 {
-	run = FALSE;
 	printf("\rttymidi closing down ... ");
 	jack_close();
+	run = FALSE;
+        pthread_cond_signal(&jack.data_ready);
 }
 
 /* --------------------------------------------------------------------- */
@@ -420,6 +421,7 @@ void* read_midi_from_jack(void* unused)
 		pthread_mutex_lock(&jack_lock);
 		while (jack.tty_out_data == NULL) {
 			pthread_cond_wait(&jack.data_ready, &jack_lock);
+			if (!run) return;
 		}
 
 		cur_data = jack.tty_out_data;
