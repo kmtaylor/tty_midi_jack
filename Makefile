@@ -1,5 +1,5 @@
 all:
-	gcc tty_midi_jack.c -o tty_midi_jack -lasound -lpthread
+	gcc tty_midi_jack.c -o tty_midi_jack -ljack -lpthread
 clean:
 	rm tty_midi_jack
 install:
