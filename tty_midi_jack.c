@@ -179,6 +179,7 @@ static void add_midi_event(Mididata_list *midi_list, uint8_t *data,
         }
         memcpy(cur_data->data, data, size);
 	cur_data->length = size;
+	cur_data->next = NULL;
 
 	pthread_mutex_unlock(&jack_lock);
 }
