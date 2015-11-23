@@ -1,0 +1,5 @@
+This is ttyMIDI from https://launchpad.net/ttymidi modified to use Jack instead
+of ALSA.
+
+Usage is the same, but remember to set up the Midi connection using qjackctl or
+similar.
